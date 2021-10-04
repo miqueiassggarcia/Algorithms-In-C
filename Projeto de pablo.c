@@ -59,13 +59,23 @@ void inserirContato(Contato** contato) {
       }
       prox = prox->prox;
     }
+
     if((*contato)->prox == NULL && prox->prox == NULL && strcmp(prox->nome, nome) > 0) {
-      novoContato->prox = *contato;
+      printf("\n1\n%s", atual->nome);
+      printf("%s", prox->nome);
+      printf("%s", (*contato)->nome);
       *contato = novoContato;
+      novoContato->prox = atual;
     } else if(prox->prox == NULL && strcmp(prox->nome, nome) <= 0) {
+      printf("\n2\n%s", atual->nome);
+      printf("%s", prox->nome);
+      printf("%s", (*contato)->nome);
+      novoContato->prox = NULL;
       prox->prox = novoContato;
-      prox->prox->prox = NULL;
     } else {
+      printf("\n1\n%s", atual->nome);
+      printf("%s", prox->nome);
+      printf("%s", (*contato)->nome);
       atual->prox = novoContato;
       novoContato->prox = prox;
     }
@@ -83,24 +93,6 @@ void listarContatos(Contato *contato) {
       printf("Email: %s\n", contato->email);
       contato = contato->prox;
     }
-  }
-}
-
-void inserir_fim(Contato** contato, char nome[50], char tel[15], char cel[15], char email[40]){
-  Contato* novo = malloc(sizeof(Contato));
-  strcpy(novo->nome,nome);
-  strcpy(novo->telefone,tel);
-  strcpy(novo->celular, cel);
-  strcpy(novo->email,email);
-  if(*contato==NULL){
-    *contato = novo;
-    (*contato)->prox = NULL;
-  } else {
-    Contato* p = *contato;
-    while(p->prox!=NULL){
-      p = p->prox;
-    }
-    p->prox = novo;
   }
 }
 
@@ -172,7 +164,7 @@ int main() {
 
     case 3:
       resultadoBuscar = buscar(contatos);
-      printf("\nResultado da busca\n");
+      printf("\nResultado da busca:\n");
       printf("Nome: %s", resultadoBuscar->nome);
       printf("Telefone: %s", resultadoBuscar->telefone);
       printf("Celular: %s", resultadoBuscar->celular);
