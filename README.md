@@ -1,4 +1,4 @@
-# AlgoritmsInC
+# Algorithms-In-C
 
 ## ⚡ Tecnologias utilizadas
 <div>
